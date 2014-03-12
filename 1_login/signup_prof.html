@@ -1,0 +1,63 @@
+<html>
+	<head>
+  		<link href="../css/phpMM.css" rel="stylesheet" type="text/css" />
+	</head>
+
+<body>
+	<div id="content">
+		
+<script>		
+        function check(){
+            re = /^\d{1,10}$/;
+	    re2 = /^\w{1,10}$/;
+            if(!re.test(document.getElementById("ID").value)){
+		    alert("ID should be all digits with the length no more than 10!");
+		    return false;
+	    }
+	    
+            if(!re2.test(document.getElementById("pw1").value)){
+		    alert("The password should be all digits with the length no more than 10!");
+		    return false;
+	    }
+
+            if(document.getElementById("pw1").value!=document.getElementById("pw2").value){
+		    alert("Typed different passwords");
+		    return false;
+	    }
+	    return true;
+        }
+	
+</script>
+	<h1>New Professor</h1>
+	<form id="signup_prof" action="signup_prof.php" method="POST">
+		<fieldset>
+			<table border = "0" align = "left">
+				<tr>
+					<td>ID:</td>
+					<td><input type="text"  name="ID" size="20"/></td>
+				</tr>
+				<tr>
+					<td>Set your password:</td>
+					<td><input type="password"  name="pw1" size="10" /></td>
+				</tr>
+				<tr>
+					<td>Type it again:</td>
+					<td><input type="password"  name="pw2" size="10" /></td>
+				</tr>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text"  name="name" size="30"/></td>
+				</tr>
+				<tr>
+					<td>Department ID:</td>
+					<td><input type="text"  name="dept" size="30"/><a href = "dep.php">Department ID table</a></td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset class="center">
+		<input type="submit" onClick ="check();" value="Sign up" />
+		</fieldset>
+	</form>
+	</div>
+</body>
+</html>

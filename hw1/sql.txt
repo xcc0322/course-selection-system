@@ -1,0 +1,126 @@
+use hw2;
+
+drop table `admin`,`pretake`,`take`;
+drop table `course`,`student`,`professor`;
+drop table `department`;
+
+CREATE TABLE department(
+	did varchar(30) NOT NULL PRIMARY KEY,
+	name varchar(30) NOT NULL
+);
+
+CREATE TABLE student(
+	sid varchar(10) NOT NULL PRIMARY KEY,
+        password varchar(10) NOT NULL,
+	name varchar(30) NOT NULL,
+	did varchar(30) NOT NULL,
+	grade int NOT NULL,
+	suspended smallint default 0,
+	FOREIGN KEY (did) REFERENCES department(did)
+);
+
+
+
+CREATE TABLE notification(
+	sid varchar(10),
+	cid varchar(10),
+	info varchar(50),
+	PRIMARY KEY (sid, cid)
+);
+
+CREATE TABLE professor(
+	pid varchar(10) NOT NULL PRIMARY KEY,
+        password varchar(10) NOT NULL,
+	name varchar(30) NOT NULL,
+	did varchar(30) NOT NULL,
+	suspended smallint default 0,
+	FOREIGN KEY (did) REFERENCES department(did)
+);
+
+CREATE TABLE course(
+	cid varchar(10) NOT NULL,
+	pid varchar(10) NOT NULL,
+	year integer NOT NULL,
+	name varchar(50) NOT NULL, 
+   	credit integer NOT NULL,           
+   	hours varchar(3) NOT NULL,
+  	type varchar(3) NOT NULL,
+   	size_limit integer  NOT NULL,
+  	class_time varchar(30) NOT NULL,
+   	classroom varchar(30) NOT NULL,
+  	did varchar(30) NOT NULL,
+   	grade integer  NOT NULL,
+	PRIMARY KEY (cid, year),
+	FOREIGN KEY (pid) REFERENCES professor(pid) on delete cascade
+);
+
+CREATE TABLE admin(
+	aid varchar(10) NOT NULL PRIMARY KEY,
+        password varchar(10) NOT NULL,
+	suspended smallint default 0
+);
+
+CREATE TABLE take(
+	sid varchar(10),
+	cid varchar(10),
+	PRIMARY KEY (sid, cid),
+	FOREIGN KEY (sid) REFERENCES student(sid) on delete cascade,
+	FOREIGN KEY (cid) REFERENCES course(cid) on delete cascade
+);
+
+CREATE TABLE pretake(
+	sid varchar(10),
+	cid varchar(10),
+	PRIMARY KEY (sid, cid),
+	FOREIGN KEY (sid) REFERENCES student(sid) on delete cascade,
+	FOREIGN KEY (cid) REFERENCES course(cid) on delete cascade
+);
+insert into admin(aid, password)
+	values('11111', ENCODE('123', 'godisagirl'));
+
+insert into department(did, name)
+	values('1','Computer Science'),
+('2','Electronic Engineering'),
+('3','Financial Management'), 
+('4','Foreign Language');
+
+insert into department(did, name)
+	values('5','Biological Technology'),
+('6','Mechanical Engineering'),
+('7','Cival Engineering'), 
+('8','Material Science'),
+('9','Communication Engineering'), 
+('A','Opto-Electronic Engineering');
+
+
+insert into professor(pid, password, name, did)
+values('11111', ENCODE('123', 'godisagirl'), 'Zhang','1'),
+('22222', ENCODE('123', 'godisagirl'), 'Huang','2'),
+('33333', ENCODE('123', 'godisagirl'), 'Cai','4'),
+('55555', ENCODE('123', 'godisagirl'), 'Liu', '3');
+
+insert into 
+course(cid, year, name, credit,hours,type,size_limit,class_time,classroom,did,grade,pid)
+values('c1111', 2013, 'Databse Management',3,'3','0',50, '5EFG','MB312','3',2,'55555'),
+('c2222', 2013, 'Porbability',3,'3','0',100,'3CD4E','EC115','1',2,'11111'),
+('c3333', 2013, 'Junior Oral Translation',2,'3','0',15,'4EF','F322','4',1,'33333');
+
+
+insert into student(sid, password, name, did, grade)
+values('0016996', ENCODE('123', 'godisagirl'), 'Wang Yi', '1', 2),
+('0016997', ENCODE('123', 'godisagirl'), 'Lin Er', '2', 2),
+('0016998', ENCODE('123', 'godisagirl'), 'Zhang San', '3', 3),
+('0016999', ENCODE('123', 'godisagirl'), 'Li Si', '4', 4);
+
+insert into take(sid, cid)
+values('0016996', 'c1111'),
+('0016998', 'c1111'),
+('0016999', 'c1111'),
+('0016996', 'c2222'),
+('0016997', 'c2222'),
+('0016998', 'c2222'),
+('0016999', 'c3333');
+
+
+
+

@@ -1,0 +1,36 @@
+use hw2;
+drop table `course2`;
+
+CREATE TABLE course2(
+	year integer NOT NULL,
+	semester varchar(10) NOT NULL,
+	cid varchar(10) NOT NULL,
+	pcid varchar(10) NOT NULL,
+
+	name varchar(100) NOT NULL, 
+   	size_limit integer  NOT NULL,
+  	class_time varchar(30),
+   	classroom varchar(30),
+   	credit integer NOT NULL,     
+	hours integer NOT NULL,
+	prof varchar(30)binary,
+	belong_dept varchar(100),
+      
+  	type varchar(10),
+	work_dept varchar(100),
+	PRIMARY KEY (cid, semester)
+);
+
+set names utf8;
+load data infile 'E:\\input.csv' into table course2
+FIELDS TERMINATED BY ',' 
+LINES TERMINATED BY '\r\n' 
+ignore 1 lines
+(@year, @semester, @cid,@pcid, @name, @size_limit, @class_time,@classroom, @credit, @hours, @prof, @belong_dept, @type, @work_dept)
+set semester = @semester,
+year = @year, cid = @cid, pcid = @pcid, name = @name, size_limit = @size_limit, classroom = @classroom,class_time = @class_time,
+credit = @credit, hours = @hours, prof = @prof, belong_dept = @belong_dept,
+type = @type, work_dept = @work_dept;
+
+use hw2;
+select * from course2 where locate"≈ÌŒƒ÷æ"

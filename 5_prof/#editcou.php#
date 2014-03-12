@@ -1,0 +1,89 @@
+
+<html><head>
+<meta http-equiv="content-type" content="text/
+html;charset=utf-8">
+<title>Update Course Info</title></head>   
+
+<?php
+if (isset($_GET['editcou']))
+{$editcou=$_GET['editcou'];}
+echo "cid=".$editcou;
+?>
+<body>
+
+<form id="editcou_form" action='updcou.php' method='POST'>
+
+
+<?php
+require_once "../scripts/database_connection.php";
+
+$pt = trans_time("2E1F");
+for($i=0; $i<count($pt); $i++) echo $pt[$i];
+
+$sqlBB="select * from course where cid='$editcou'";
+$sql2BB=mysql_query($sqlBB) or die(mysql_error());
+
+
+echo "<table border='3'>";
+while($list3BB=mysql_fetch_array($sql2BB))
+{
+?>
+<table>
+<tr><td>CID:</td>
+<td>
+<input type="text" name="cid" value="<?php echo $list3BB['cid']; ?>" readonly=true>
+</td></tr>
+<tr><td>Name:</td>
+<td>
+<input type="text" name="coursename" value="<?php echo $list3BB['name'];?>" >
+
+</td></tr>
+<tr><td>PID:</td>
+<td>
+<input type="text" name="pid" value="<?php echo $list3BB['pid'];?>" readonly=true>
+</td></tr>
+<tr><td>Department:</td>
+<td>
+<input type="text" name="coudept" value="<?php echo $list3BB['did'];?>" >
+</td></tr>
+<tr><td>year:</td>
+<td>
+<input type="text" name="couyear" value="<?php echo $list3BB['year'];?>" readonly=true>
+</td></tr>
+<tr><td>Hours:</td>
+<td>
+<input type="text" name="hours" value="<?php echo $list3BB['hours'];?>" >
+</td></tr>
+<tr><td>Grade:</td>
+<td>
+<input type="text" name="cougrade" value="<?php echo $list3BB['grade'];?>" >
+</td></tr>
+<tr><td>Type(Optional or not):</td>
+<td>
+<input type="text" name="chooseyn" value="<?php echo $list3BB['type'];?>" >
+</td></tr>
+<tr><td>Credit:</td>
+<td>
+<input type="text" name="coucredit" value="<?php echo $list3BB['credit'];?>" >
+</td></tr>
+<tr><td>Classroom:</td>
+<td>
+<input type="text" name="couplace" value="<?php echo $list3BB['classroom'];?>" >
+</td></tr>
+
+<tr><td>Time:</td>
+<td>
+<input type="text" name="coutime" value="<?php echo $list3BB['class_time'];?>" >
+</td></tr>
+<tr><td>Update:</td>
+</table>
+<input type='submit' name="SUBMIT" value="update">
+
+</form>
+
+<?php }
+echo "</table>";
+?>
+
+
+</body></html>

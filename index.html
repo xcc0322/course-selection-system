@@ -1,0 +1,30 @@
+<html>
+	<head>
+  		<link href="./css/phpMM.css" rel="stylesheet" type="text/css" />
+	</head>
+
+<body>
+	<div id="content">
+	<h1>Online Course System</h1>
+	<form id="login_form" action="./1_login/login.php" method="POST">
+		<fieldset>
+			<table border = "0" align = "left">
+				<tr>
+					<td>ID:</td>
+					<td><input type="text"  name="ID" /></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password"  name="password" /></td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset class="center">
+		<input type="button" onClick = "window.location.href='./1_login/signup.html'" value="Sign up" />
+		<input type="submit" value="Log in" />
+		<input type="button" onClick = "window.location.href='./1_login/course.php'" value="Course List" />
+		</fieldset>
+	</form>
+	</div>
+</body>
+</html>
