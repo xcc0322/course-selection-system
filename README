@@ -1,0 +1,19 @@
+Background
+This is my first integrated project of computer science major.
+It was a course project for Database course at NCTU in the spring of 2013, the second year of my university.
+I built it under the cooperation with two classmates in NCTU during my exchange semester there.
+It was simple with no amazing features and ugly code. But it satisfied the requirements from the course and is the first milestone of my programming experience.
+
+
+About
+Skills used:
+php+mysql
+
+Implemented features:
+-teachers, students, administrators identification
+-course list display
+-respective operations over the courses
+-a modest UI
+
+Time Range
+2013.3-2013.6.21
